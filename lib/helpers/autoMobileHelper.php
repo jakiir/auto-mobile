@@ -59,8 +59,16 @@ function automobile_search_list() {
         echo '<li><select class="form-control"  name="txt_automobile_year" id="txt_automobile_year_dropdown"><option value="">Show All Year</option>';         
 		if($get_auto_mobile_year_uns) {
 			arsort($get_auto_mobile_year_uns);
-            foreach ($get_auto_mobile_year_uns as $key=>$get_auto_mobile_year_unss): ?>
-                <option value="<?php echo $get_auto_mobile_year_unss['year']; ?>" <?php if ( isset ( $_GET['txt_automobile_year'] ) ) selected( $_GET['txt_automobile_year'], $get_auto_mobile_year_unss['year'] ); ?>><?php _e( $get_auto_mobile_year_unss['year'], 'automobile_plugin' )?></option>';         <?php  endforeach;
+			
+            foreach ($get_auto_mobile_year_uns as $key=>$get_auto_mobile_year_unss): 
+				$get_auto_mobile_year_unsss[] = $get_auto_mobile_year_unss['year'];
+			endforeach;
+			$get_auto_mobile_year_unsss = array_unique($get_auto_mobile_year_unsss);
+			foreach ($get_auto_mobile_year_unsss as $key=>$get_auto_mobile_year_un):
+			?>
+                <option value="<?php echo $get_auto_mobile_year_un; ?>" <?php if ( isset ( $_GET['txt_automobile_year'] ) ) selected( $_GET['txt_automobile_year'], $get_auto_mobile_year_un ); ?>><?php _e( $get_auto_mobile_year_un, 'automobile_plugin' )?></option>
+				<?php  
+			endforeach;
         }
         echo '</select></li>';
 		

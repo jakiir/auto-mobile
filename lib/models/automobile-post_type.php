@@ -539,13 +539,20 @@ $get_advanced_automobile = @unserialize($get_advanced_automobile_array);
             $auto_mobile_make = '_auto_mobile_attributes';
             $get_auto_mobile_make = get_option( $auto_mobile_make );
             $get_auto_mobile_make_uns = @unserialize($get_auto_mobile_make);
-            if($get_auto_mobile_make_uns) {
-                foreach ($get_auto_mobile_make_uns as $key=>$get_auto_mobile_make_unss): ?>
-                    <option value="<?php echo $get_auto_mobile_make_unss['make']; ?>" <?php if ( isset ( $get_advanced_automobile['txt_automobile_make'] ) ) selected( $get_advanced_automobile['txt_automobile_make'], $get_auto_mobile_make_unss['make'] ); ?>><?php _e( $get_auto_mobile_make_unss['make'], 'automobile_plugin' )?></option>';
+            if($get_auto_mobile_make_uns) {				
+                foreach ($get_auto_mobile_make_uns as $key=>$get_auto_mobile_make_unss): 
+					$get_auto_mobile_makes[] = $get_auto_mobile_make_unss['make'];
+				?>
+                    
                 <?php  endforeach;
+				$get_auto_mobile_makess = array_unique($get_auto_mobile_makes);
+				foreach($get_auto_mobile_makess as $get_auto_mobile_makesss): ?>
+					<option value="<?php echo $get_auto_mobile_makesss; ?>" <?php if ( isset ( $get_advanced_automobile['txt_automobile_make'] ) ) selected( $get_advanced_automobile['txt_automobile_make'], $get_auto_mobile_makesss ); ?>><?php _e( $get_auto_mobile_makesss, 'automobile_plugin' )?></option>
+				<?php endforeach;
+				
             }
             ?>
-        </select>
+        </select>		
     </p>
 	<p>
         <label for="txt_automobile_model" class="left-lable"><?php _e( 'Model', 'automobile_plugin' )?></label>
